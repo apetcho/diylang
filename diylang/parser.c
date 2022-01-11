@@ -18,10 +18,10 @@ typedef enum {
 
 // ---
 typedef enum {
-    NodeIDENT, NodeSTR, NodeINT, NodeSEQ, NodeIF, NodePRTC, NodePRTI,
-    NodeWHILE, NodeASSIGN, NodeNEG, NodeNOT, NodeMUL, NodeDIV, NodeMOD,
-    NodeADD, NodeSUB, NodeLT, NodeLE, NodeGT, NodeGE, NodeEQ, NodeNE,
-    NodeAND, NodeOR
+    NodeIDENT, NodeSTR, NodeINT, NodeSEQ, NodeIF, NodePRTC, NodePRTS,
+    NodePRTI, NodeWHILE, NodeASSIGN, NodeNEG, NodeNOT, NodeMUL, NodeDIV,
+    NodeMOD, NodeADD, NodeSUB, NodeLT, NodeLE, NodeGT, NodeGE, NodeEQ,
+    NodeNE, NodeAND, NodeOR
 } NodeEnum_t;
 
 // tok_s => Token_t
