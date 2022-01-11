@@ -45,8 +45,6 @@ typedef struct Tree{
         }                                                                   \
     }while(0)
 
-#define diyl_rewind(name)   _qy_ ## name ## _p = 0
-
 #define diyl_append(name, x)                                        \
     do{                                                             \
         diyl_redim(name);                                           \
