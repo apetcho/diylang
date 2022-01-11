@@ -1,0 +1,6 @@
+doc/
+build/
+.DS_Store
+*.swp
+*~
+.vscode/
