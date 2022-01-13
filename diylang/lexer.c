@@ -202,7 +202,54 @@ static TokenEnum_t get_identifier_type(const char *identifier){
 // ****
 // ident_or_int() => identifier_or_int()
 static Token_t identifier_or_int(int err_line, int err_col){
-    // TODO
+    Token_t retval;
+    int n; // XXX long n??
+    int isnumber = true;
+
+    diyl_rewind(text);
+
+    while(isalnum(current_char) || current_char == '_'){
+        diyl_append(text, (char)current_char);
+        if(!isdigit(current_char)){
+            isnumber = false;
+        }
+        next_char();
+    }
+    if(diyl_len(text) == 0){
+        error(
+            err_line, err_col,
+            "identifier_or_int(): unrecognized character (%d) '%c'\n",
+            current_char, current_char
+        );
+    }
+
+    diyl_append(text, '\0');
+    if(isdigit(text[0])){
+        if(!isnumber){
+            error(
+                err_line, err_col,
+                "invalide number: %s\n",
+                text
+            );
+        }
+        n = strtol(text, NULL, 0);
+        if(n == LONG_MAX && errno == ERANGE){
+            error(
+                err_line, err_col,
+                "Number exceed maximum value."
+            );
+        }
+        retval.token = TokINT;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = n;
+        return retval;
+    }
+    retval.token = get_identifier_type(text);
+    retval.error_line = err_line;
+    retval.error_col = err_col;
+    retval.name = text;
+    return retval;
 }
 
 
