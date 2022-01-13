@@ -119,9 +119,31 @@ static Token_t char_literal(int n, int err_line, int err_col){
 }
 
 // ****
+// Process divide or comments
 // div_or_cmt() => divide_or_comment()
 static Token_t divide_or_comment(int err_line, int err_col){
-    // TODO
+    Token_t retval;
+    if(current_char != '*'){
+        retval.token = TokDIV;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        return retval;
+    }
+    // comment found
+    next_char();
+    for(;;){
+        if(current_char == '*'){
+            if(next_char() == '/'){
+                next_char();
+                return get_token();
+            }
+        }else if(current_char == EOF){
+            error(err_line, err_col, "EOF in comment");
+        }else{
+            next_char();
+        }
+    }
 }
 
 // ****
