@@ -86,9 +86,9 @@ struct {
     {"}", "RBRACE", TokRBRACE, false, false, false, -1, -1},
     {";", "SEMICOLON", TokSEMICOLON, false, false, false, -1, -1},
     {",", "COMMA", TokCOMMA, false, false, false, -1, -1},
-    {"Ident", "Identifier", TokIDENT, false, false, false, -1, NodeIDENT},
-    {"Integer literal", "Integer", TokINT, false, false, false, -1, NodeINT},
-    {"String literal", "String", TokSTR, false, false, false, -1, NodeSTR}
+    {"Ident", "IDENTIFIER", TokIDENT, false, false, false, -1, NodeIDENT},
+    {"Integer literal", "INTEGER", TokINT, false, false, false, -1, NodeINT},
+    {"String literal", "STRING", TokSTR, false, false, false, -1, NodeSTR}
 };
 
 

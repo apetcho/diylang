@@ -413,10 +413,60 @@ Token_t get_token(void){
     return retval;
 }
 
-// ****
+// **** Tokenize the given input
 // run() => tokenize()
 void tokenize(void){
-    // TODO
+    Token_t symbol;
+    do{
+        symbol = get_token();
+        fprintf(dstfile,
+            "%5d, %5d %.15s",
+            symbol.error_line, symbol.error_col,
+            &"End_of_input    "
+             "OP_multiply     "
+             "OP_divide       "
+             "OP_mod          "
+             "OP_add          "
+             "OP_substract    "
+             "OP_negate       "
+             "OP_not          "
+             "OP_less         "
+             "OP_lessequal    "
+             "OP_greater      "
+             "OP_greaterequal "
+             "OP_equal        "
+             "OP_notequal     "
+             "OP_assign       "
+             "OP_and          "
+             "OP_or           "
+             "KWD_if          "
+             "KWD_else        "
+             "KWD_while       "
+             "KWD_print       "
+             "KWD_putc        "
+             "LPAREN          "
+             "RPAREN          "
+             "LBRACE          "
+             "RBRACE          "
+             "SEMICOLON       "
+             "COMMA           "
+             "IDENTIFIER      "
+             "INTEGER         "
+             "STRING          "
+            [symbol.token * 16]
+        );
+
+        if(symbol.token == TokINT){
+            fprintf(dstfile, " %4d", symbol.value);
+        }else if(symbol.token == TokIDENT){
+            fprintf(dstfile, " %s", symbol.name);
+        }else if(symbol.token == TokSTR){
+            fprintf(dstfile, "\"%s\"", symbol.name);
+        }
+        fprintf(dstfile, "\n");
+    }while(symbol.token != TokEOI);
+
+    if(dstfile != stdout){ fclose(dstfile); }
 }
 
 // *****
