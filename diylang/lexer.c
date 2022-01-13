@@ -173,8 +173,8 @@ static Token_t string_literal(int start, int err_line, int err_col){
 
 // ****
 // kwd_cmp() => keyword_compare()
-static int keyword_compare(const void *ptrs, const void *ptr){
-    // TODO
+static int keyword_compare(const void *ptr1, const void *ptr2){
+    return strcmp(*(char**)ptr1, *(char**)ptr2);
 }
 
 // ****
