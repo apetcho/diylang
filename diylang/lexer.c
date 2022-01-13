@@ -89,7 +89,33 @@ static int next_char(void){
 // ****
 // char_lit() => char_literal()
 static Token_t char_literal(int n, int err_line, int err_col){
-    // TODO
+    if(current_char == '\''){
+        error(err_line, err_col, "char_literal(): empty character constant");
+    }
+    if(current_char == '\\'){
+        next_char();
+        if(current_char == 'n'){
+            n = 10;
+        }else if(current_char == '\\'){
+            n = '\\';
+        }else{
+            error(
+                err_line, err_col,
+                "char_literal(): unknown escape sequence\\%c", current_char
+            );
+        }
+    }
+
+    if(next_char() != '\''){
+        error(err_line, err_col, "multi-character constant");
+    }
+    next_char();
+    Token_t retval;
+    retval.token = TokINT;
+    retval.error_col = err_col;
+    retval.error_line = err_line;
+    retval.value = n;
+    return retval;
 }
 
 // ****
