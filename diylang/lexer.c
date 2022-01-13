@@ -283,9 +283,134 @@ static Token_t follow(
     return retval;
 }
 
+// Get token type
 // gettok() => get_token()
 Token_t get_token(void){
-    // TODO
+    Token_t retval;
+    // skip white space
+    while(isspace(current_char)){ next_char();}
+    int err_line = lineno;
+    int err_col = column;
+    switch(current_char){
+    case '{':
+        next_char();
+        retval.token = TokLBRACE;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case '}':
+        next_char();
+        retval.token = TokRBRACE;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case '(':
+        next_char();
+        retval.token = TokLPAREN;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case ')':
+        next_char();
+        retval.token = TokRPAREN;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case '+':
+        next_char();
+        retval.token = TokADD;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case '-':
+        next_char();
+        retval.token = TokSUB;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case '*':
+        next_char();
+        retval.token = TokMUL;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case '%':
+        next_char();
+        retval.token = TokMOD;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case ';':
+        next_char();
+        retval.token = TokSEMICOLON;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case ',':
+        next_char();
+        retval.token = TokCOMMA;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    case '/':
+        next_char();
+        retval = divide_or_comment(err_line, err_col);
+        break;
+    case '\'':
+        next_char();
+        retval = char_literal(current_char, err_line, err_col);
+        break;
+    case '<':
+        next_char();
+        retval = follow('=', TokLE, TokLT, err_line, err_col);
+        break;
+    case '>':
+        next_char();
+        retval = follow('=', TokGE, TokGT, err_line, err_col);
+        break;
+    case '=':
+        next_char();
+        retval = follow('=', TokEQ, TokASSIGN, err_line, err_col);
+        break;
+    case '!':
+        next_char();
+        retval = follow('=', TokNE, TokNOT, err_line, err_col);
+        break;
+    case '&':
+        next_char();
+        retval = follow('&', TokAND, TokEOI, err_line, err_col);
+        break;
+    case '|':
+        next_char();
+        retval = follow('|', TokOR, TokEOI, err_line, err_col);
+        break;
+    case '"':
+        next_char();
+        retval = string_literal(current_char, err_line, err_col);
+        break;
+    case EOF:
+        next_char();
+        retval.token = TokEOI;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+        break;
+    default:
+        retval = identifier_or_int(err_line, err_col);
+        break;
+    }// end switch
+
+    return retval;
 }
 
 // ****
