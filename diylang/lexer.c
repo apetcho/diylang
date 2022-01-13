@@ -33,8 +33,8 @@
 // TokenType => TokenEnum_t
 typedef enum {
     TokEOI, TokMUL, TokDIV, TokMOD, TokADD, TokSUB, TokNEG,
-    TokNOT, TokLT, TokLE, TokGT, TokGE, TokNE, TokASSIGN, TokAND,
-    TokOR, TokIF,TokELSE, TokWHILE, TokPRINT, TokPUTC, TokLPAREN,
+    TokNOT, TokLT, TokLE, TokGT, TokGE, TokEQ, TokNE, TokASSIGN,
+    TokAND, TokOR, TokIF,TokELSE, TokWHILE, TokPRINT, TokPUTC, TokLPAREN,
     TokRPAREN, TokLBRACE, TokRBRACE, TokSEMICOLON, TokCOMMA, TokIDENT,
     TokINT, TokSTR
 } TokenEnum_t;
