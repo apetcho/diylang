@@ -179,8 +179,24 @@ static int keyword_compare(const void *ptr1, const void *ptr2){
 
 // ****
 // get_ident_type() => get_identifier_type()
-static Token_t get_identifier_type(const char *identifier){
-    // TODO
+static TokenEnum_t get_identifier_type(const char *identifier){
+    static struct{
+        const char *symbol;
+        TokenEnum_t token;
+    }keywords[] = {
+        {.symbol="else", .token = TokELSE},
+        {.symbol="if", .token=TokIF},
+        {.symbol="print", .token=TokPRINT},
+        {.symbol="putc", .token=TokPUTC},
+        {.symbol="while", .token=TokWHILE},
+    }, *kwp;
+
+    kwp = bsearch(
+        &identifier, keywords,
+        NELEMS(keywords), sizeof(keywords[0]),
+        keyword_compare
+    );
+    return kwp == NULL ? TokIDENT : kwp->token;
 }
 
 // ****
