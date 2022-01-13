@@ -64,7 +64,14 @@ Token_t get_token();
 
 // ****
 static void error(int err_line, int err_col, const char *fmt, ...){
-    // TODO
+    char buf[1000];
+    va_list ap;
+
+    va_start(ap, fmt);
+    vsprintf(buf, fmt, ap);
+    va_end(ap);
+    printf("(%d, %d) \x1[31merror\x1b[0m: %s\n", err_line, err_col, buf);
+    exit(EXIT_FAILURE);
 }
 
 // *** Get next char from inpput
