@@ -149,7 +149,26 @@ static Token_t divide_or_comment(int err_line, int err_col){
 // ****
 // string_lit() => string_literal()
 static Token_t string_literal(int start, int err_line, int err_col){
-    // TODO
+    diyl_rewind(text);
+
+    while(next_char() != start){
+        if(current_char == '\n'){
+            error(err_line, err_col, "EOL in string");
+        }
+        if(current_char == EOF){
+            error(err_line, err_col, "EOF in string");
+        }
+        diyl_append(text, (char)current_char);
+    }
+
+    diyl_append(text, '\0');
+    next_char();
+    Token_t retval;
+    retval.token = TokSTR;
+    retval.error_line = err_line;
+    retval.error_col = err_col;
+    retval.name = text;
+    return retval;
 }
 
 // ****
