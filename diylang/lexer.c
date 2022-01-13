@@ -77,7 +77,13 @@ static void error(int err_line, int err_col, const char *fmt, ...){
 // *** Get next char from inpput
 // next_ch() => next_char()
 static int next_char(void){
-    // TODO
+    current_char = get(srcfile);
+    ++column;
+    if(current_char == '\n'){
+        ++lineno;
+        column = 0;
+    }
+    return current_char;
 }
 
 // ****
