@@ -259,7 +259,28 @@ static Token_t follow(
     int expect, TokenEnum_t ifyes, TokenEnum_t ifno,
     int err_line, int err_col
 ){
-    // TODO
+    Token_t retval;
+    if(current_char == expect){
+        next_char();
+        retval.token = ifyes;
+        retval.error_line = err_line;
+        retval.error_col = err_col;
+        retval.value = 0;
+    }
+
+    if(ifno == TokEOI){
+        error(
+            err_line, err_col,
+            "follow(): unrecognized character '%c' (%d)",
+            current_char, current_char
+        );
+    }
+
+    retval.token = ifno;
+    retval.error_line = err_line;
+    retval.error_col = err_col;
+    retval.value = 0;
+    return retval;
 }
 
 // gettok() => get_token()
