@@ -240,6 +240,16 @@ Tree *expr(int p){
         token = get_token();
         x = make_node(NodeNOT, expr(attr[TokNOT].predecence), NULL);
         break;
+    case TokINT:
+        x = make_leaf(NodeINT, token.name);
+        token = get_token();
+        break;
+    default:
+        error(
+            token.error_line, token.error_col,
+            "Expectine a primary, found: %s\n",
+            attr[token.token].text
+        );
     }// switch
 }
 
