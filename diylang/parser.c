@@ -190,7 +190,11 @@ Token_t get_token(){
 
 // ***
 Tree* make_node(NodeEnum_t nodetype, Tree* left, Tree* right){
-    // TODO
+    Tree *tree = calloc(sizeof(*tree), 1);
+    tree->node = nodetype;
+    tree->left = left;
+    tree->right = right;
+    return tree;
 }
 
 // ***
