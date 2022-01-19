@@ -110,7 +110,14 @@ Tree* paren_expr();
 
 // ***
 void error(int err_line, int err_col, const char *fmt, ...){
-    // TODO
+    va_list ap;
+    char buf[1000];
+
+    va_start(ap, fmt);
+    vsprintf(buf, fmt, ap);
+    va_end(ap);
+    printf("(%d, %d) error: %s\n", err_line, err_col, buf);
+    exit(1);
 }
 
 // ***
