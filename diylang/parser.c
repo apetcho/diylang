@@ -221,7 +221,26 @@ void expect(const char msg[], TokenEnum_t symbol){
 
 // ***
 Tree *expr(int p){
-    // TODO
+    Tree *x = NULL;
+    Tree *node;
+    TokenEnum_t op;
+
+    switch(token.token){
+    case TokLPAREN:
+        x = paren_expr();
+        break;
+    case TokSUB:
+    case TokADD:
+        op = token.token;
+        token = get_token();
+        node = expr(attr[TokNEG].predecence);
+        x = (op == TokSUB) ? make_node(NodeNEG, node, NULL) : node;
+        break;
+    case TokNOT:
+        token = get_token();
+        x = make_node(NodeNOT, expr(attr[TokNOT].predecence), NULL);
+        break;
+    }// switch
 }
 
 Tree *paren_expr(){
