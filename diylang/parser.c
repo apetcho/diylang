@@ -251,6 +251,17 @@ Tree *expr(int p){
             attr[token.token].text
         );
     }// switch
+
+    while(attr[token.token].isbinary && attr[token.token].predecence >= p){
+        TokenEnum_t op = token.token;
+        token = get_token();
+        int q = attr[op].predecence;
+        if(!attr[op].rightassoc){ q++; }
+        node = expr(q);
+        x = make_node(attr[op].node, x, node);
+    }
+
+    return x;
 }
 
 Tree *paren_expr(){
