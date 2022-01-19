@@ -199,7 +199,10 @@ Tree* make_node(NodeEnum_t nodetype, Tree* left, Tree* right){
 
 // ***
 Tree* make_leaf(NodeEnum_t nodetype, char *value){
-    // TODO
+    Tree *tree = calloc(sizeof(*tree), 1);
+    tree->node = nodetype;
+    tree->value = strdup(value);
+    return tree;
 }
 
 // ***
