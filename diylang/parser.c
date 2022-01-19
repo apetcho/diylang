@@ -265,7 +265,11 @@ Tree *expr(int p){
 }
 
 Tree *paren_expr(){
-    // TODO
+    expect("paren_expr", TokLPAREN);
+    Tree *tree = expr(0);
+    expect("paren_expr", TokRPAREN);
+
+    return tree;
 }
 
 // *** stmt() => statement()
