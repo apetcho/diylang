@@ -207,7 +207,15 @@ Tree* make_leaf(NodeEnum_t nodetype, char *value){
 
 // ***
 void expect(const char msg[], TokenEnum_t symbol){
-    // TODO
+    if(token.token == symbol){
+        token = get_token();
+        return;
+    }
+    error(
+        token.error_line, token.error_col,
+        "%s: Expecting '%s', found '%s'\n",
+        msg, attr[symbol], attr[token.token].text
+    );
 }
 
 
