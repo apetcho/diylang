@@ -152,7 +152,14 @@ char* rtrim(char *text, int *len){
 
 // *** get_enum() => get_enum_token()
 TokenEnum_t get_enum_token(const char *name){
-    // TODO
+    for(size_t i=0; i < NELEMS(attr); i++){
+        if(strcmp(attr[i].enumtxt, name) == 0){
+            return attr[i].token;
+        }
+    }
+
+    error(0, 0, "Unknown token %s\n", name);
+    // return 0;
 }
 
 // *** gettok() => get_token()
