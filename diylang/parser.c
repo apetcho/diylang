@@ -164,7 +164,28 @@ TokenEnum_t get_enum_token(const char *name){
 
 // *** gettok() => get_token()
 Token_t get_token(){
-    // TODO
+    int len;
+    Token_t token;
+    char *yytext = read_line(&len);
+    yytext = rtrim(yytext, &len);
+
+    // []*{lineno}[]+{colno}[]+token[]+optional
+
+    // get line and column
+    token.error_line = atoi(strtok(yytext, " "));
+    token.error_col = atoi(strtok(NULL, " "));
+
+    // get the token name
+    char *name = strtok(NULL, " ");
+    token.token = get_enum_token(name);
+
+    // if there is extran data, get it.
+    char *p = name + strlen(name);
+    if(p != &yytext[len]){
+        for(++p; isspace(*p); ++p){}
+        token.token = strdup(p);
+    }
+    return token;
 }
 
 // ***
