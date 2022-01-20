@@ -322,6 +322,12 @@ Tree* statement(){
         tree = make_node(NodeASSIGN, v, e);
         expect("assign", TokSEMICOLON);
         break;
+    case TokWHILE:
+        token = get_token();
+        e = paren_expr();
+        s = statement();
+        tree = make_node(NodeWHILE, e, s);
+        break;
     }// switch
 }
 
