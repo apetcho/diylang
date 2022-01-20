@@ -274,7 +274,25 @@ Tree *paren_expr(){
 
 // *** stmt() => statement()
 Tree* statement(){
-    // TODO
+    Tree *tree = NULL;
+    Tree *v;
+    Tree *e;
+    Tree *s;
+    Tree *s2;
+
+    switch(token.token){
+    case TokIF:
+        token = get_token();
+        e = paren_expr();
+        s = statement();
+        s2 = NULL;
+        if(token.token == TokELSE){
+            token = get_token();
+            s2 = statement();
+        } 
+        tree = make_node(NodeIF, e, make_node(NodeIF, s, s2));
+        break;
+    }// switch
 }
 
 // ***
