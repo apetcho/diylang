@@ -298,6 +298,22 @@ Tree* statement(){
         tree = make_node(NodePRTC, e, NULL);
         expect("Putc", TokSEMICOLON);
         break;
+    case TokPRINT:
+        token = get_token();
+        for(expect("Print", TokPRINT); ; expect("Print", TokCOMMA)){
+            if(token.token == TokSTR){
+                e = make_node(NodePRTS, make_leaf(NodeSTR, token.name), NULL);
+                token = get_token();
+            }else{
+                e = make_node(NodePRTI, expr(0), NULL);
+            }
+            tree = make_node(NodeSEQ, tree, e);
+
+            if(token.token != TokCOMMA){ break; }
+        }
+        expect("Print", TokRPAREN);
+        expect("Print", TokSEMICOLON);
+        break;
     }// switch
 }
 
