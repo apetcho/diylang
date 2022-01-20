@@ -314,6 +314,14 @@ Tree* statement(){
         expect("Print", TokRPAREN);
         expect("Print", TokSEMICOLON);
         break;
+    case TokIDENT:
+        v = make_leaf(NodeIDENT, token.name);
+        token = get_token();
+        expect("assign", TokASSIGN);
+        e = expr(0);
+        tree = make_node(NodeASSIGN, v, e);
+        expect("assign", TokSEMICOLON);
+        break;
     }// switch
 }
 
