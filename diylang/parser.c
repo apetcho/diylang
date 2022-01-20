@@ -292,6 +292,12 @@ Tree* statement(){
         } 
         tree = make_node(NodeIF, e, make_node(NodeIF, s, s2));
         break;
+    case TokPUTC:
+        token = get_token();
+        e = paren_expr();
+        tree = make_node(NodePRTC, e, NULL);
+        expect("Putc", TokSEMICOLON);
+        break;
     }// switch
 }
 
