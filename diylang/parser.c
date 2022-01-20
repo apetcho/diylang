@@ -337,7 +337,17 @@ Tree* statement(){
         }
         expect("Lbrace", TokRBRACE);
         break;
+    case TokEOI:
+        break;
+    default:
+        error(
+            token.error_line, token.error_col,
+            "expecting start of statement, found '%s'\n",
+            attr[token.token].text
+        );
     }// switch
+
+    return tree;
 }
 
 // ***
