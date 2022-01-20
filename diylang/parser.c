@@ -379,7 +379,11 @@ void print_ast(Tree *tree){
 
 // *** init_io() => initialize()
 void initialize(FILE **fp, FILE *std, const char mode[], const char filename[]){
-    // TODO
+    if(filename[0] == "\0"){
+        *fp = std;
+    }else if((*fp=fopen(filename, mode)) == NULL){
+        error(0, 0, "Can't open %s\n", filename);
+    }
 }
 
 
