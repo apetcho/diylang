@@ -352,7 +352,13 @@ Tree* statement(){
 
 // ***
 Tree* parse(){
-    // TODO
+    Tree *tree = NULL;
+    token = get_token();
+    do{
+        tree = make_node(NodeSEQ, tree, statement());
+    }while(tree != NULL && token.token != TokEOI);
+
+    return tree;
 }
 
 // *** prt_ast() => print_ast()
