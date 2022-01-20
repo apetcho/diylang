@@ -363,7 +363,18 @@ Tree* parse(){
 
 // *** prt_ast() => print_ast()
 void print_ast(Tree *tree){
-    // TODO
+    if(tree == NULL){ printf(";\n");}
+    else{
+        printf("%-14s ", display_nodes[tree->node]);
+        if(tree->node == NodeIDENT || tree->node == NodeINT || tree->node == NodeSTR
+        ){
+            printf("%s\n", tree->value);
+        }else{
+            puts("");
+            print_ast(tree->left);
+            print_ast(tree->right);
+        }
+    }
 }
 
 // *** init_io() => initialize()
