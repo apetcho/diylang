@@ -328,6 +328,15 @@ Tree* statement(){
         s = statement();
         tree = make_node(NodeWHILE, e, s);
         break;
+    case TokLBRACE:
+        for(expect("Lbrace", TokLBRACE);
+            token.token != TokRBRACE && token.token != TokEOI
+            ;)
+        {
+            tree = make_node(NodeSEQ, tree, statement());
+        }
+        expect("Lbrace", TokRBRACE);
+        break;
     }// switch
 }
 
