@@ -133,6 +133,8 @@ int interpret(Tree *tree){
         return interpret(tree->left) + interpret(tree->right);
     case NodeSUB:
         return interpret(tree->left) - interpret(tree->right);
+    case NodeMUL:
+        return interpret(tree->left) * interpret(tree->right);
     }
 }
 
