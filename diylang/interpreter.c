@@ -177,7 +177,11 @@ int interpret(Tree *tree){
         interpret(tree->left);
         interpret(tree->right);
         return 0;
+    default:
+        error("interpret(): unknown tree type %d\n", tree->node);
     }
+
+    return 0;
 }
 
 
