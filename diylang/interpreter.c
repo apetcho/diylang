@@ -141,6 +141,8 @@ int interpret(Tree *tree){
         return interpret(tree->left) / interpret(tree->right);
     case NodeLT:
         return interpret(tree->left) < interpret(tree->right);
+    case NodeGT:
+        return interpret(tree->left) > interpret(tree->right);
     }
 }
 
