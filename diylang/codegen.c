@@ -165,7 +165,14 @@ void fix(int src, int dst){
 
 // ***
 int fetch_var_offset(const char *id){
-    // TODO
+    for(int i=0; i < diyl_len(globals); ++i){
+        if(strcmp(id, globals[i]) == 0){ return i;}
+    }
+
+    diyl_add(globals);
+    int n = n = diyl_len(globals) - 1;
+    globals[n] = strdup(id);
+    return n;
 }
 
 // ***
