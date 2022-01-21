@@ -188,7 +188,16 @@ int fetch_string_offset(const char *st){
 
 // ***
 void code_gen(Tree *tree){
-    // TODO
+    int p1, p2, n;
+
+    if(tree == NULL){ return;}
+    switch(tree->node){
+    case NodeIDENT:
+        emit_byte(FETCH);
+        n = fetch_var_offset(tree->value);
+        emit_int(n);
+        break;
+    }
 }
 
 // ***
