@@ -170,6 +170,9 @@ int interpret(Tree *tree){
     case NodePRTI:
         printf("%d", tree->left);
         return 0;
+    case NodePRTS:
+        printf("%s", stringpool[interpret(tree->left)]);
+        return 0;
     }
 }
 
