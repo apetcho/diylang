@@ -43,12 +43,13 @@ typedef enum {
 } NodeEnum_t;
 
 // ---
-typedef struct Tree{
+typedef struct Tree Tree;
+struct Tree {
     NodeEnum_t node;
     struct Tree *left;
     struct Tree *right;
     char *value;
-}Tree;
+};
 
 // ***
 struct {
@@ -91,7 +92,12 @@ diyl_dim(global_values, int);
 
 // ***
 void error(const char *fmt, ...){
-    // TODO
+    va_list ap;
+    char buf[1000];
+    va_start(ap, fmt);
+    vsprintf(buf, fmt, ap);
+    printf("Error: %s\n", buf);
+    exit(1);
 }
 
 // ***
