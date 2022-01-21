@@ -188,7 +188,12 @@ int interpret(Tree *tree){
 // ***
 // init_in() => initialize()
 void initialize(const char filename[]){
-    // TODO
+    if(filename[0] == '\0'){
+        srcfile = stdin;
+    }else{
+        srcfile = fopen(filename, "r");
+        if(srcfile == NULL){ error("Can't open %s\n", filename);}
+    }
 }
 
 // ***
