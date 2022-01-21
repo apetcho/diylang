@@ -279,7 +279,38 @@ int fetch_var_offset(const char *name){
 
 // ***
 Tree* load_ast(){
-    // TODO
+    int len;
+    char *yytext = read_line(&len);
+    yytext = rtrim(yytext, &len);
+    // get first token
+    char *token = strtok(yytext, " ");
+    if(token[0] == ';'){ return NULL; }
+    NodeEnum_t node = get_enum_value(token);
+
+    // if there is extra data, get it
+    char *p = token + strlen(token);
+    if(p != &yytext[len]){
+        int n;
+        for(++p; isspace(*p); ++p){}
+        switch(node){
+        case NodeIDENT:
+            n = fetch_var_offset(p);
+            break;
+        case NodeINT:
+            n = strtol(p, NULL, 0);
+            break;
+        case NodeSTR:
+            n = fetch_string_offset(p);
+            break;
+        default:
+            error("Unknown node type. %s\n", p);
+        }
+        return make_leaf(node, n);
+    }
+
+    Tree *left = load_ast();
+    Tree *right = load_ast();
+    return make_node(node, left, right);
 }
 
 // ------------------------------------------------------------------------
