@@ -102,7 +102,11 @@ void error(const char *fmt, ...){
 
 // ***
 Tree* make_node(NodeEnum_t ntype, Tree* left, Tree* right){
-    // TODO
+    Tree *tree = calloc(sizeof(*tree), 1);
+    tree->node = ntype;
+    tree->left = left;
+    tree->right = right;
+    return tree;
 }
 
 // ***
