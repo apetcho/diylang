@@ -123,6 +123,8 @@ int interpret(Tree *tree){
     switch(tree->node){
     case NodeINT:
         return tree->value;
+    case NodeIDENT:
+        return global_values[tree->value];
     }
 }
 
