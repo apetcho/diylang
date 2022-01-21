@@ -167,6 +167,9 @@ int interpret(Tree *tree){
     case NodePRTC:
         printf("%c", tree->left);
         return 0;
+    case NodePRTI:
+        printf("%d", tree->left);
+        return 0;
     }
 }
 
