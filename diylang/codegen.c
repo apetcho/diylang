@@ -177,7 +177,13 @@ int fetch_var_offset(const char *id){
 
 // ***
 int fetch_string_offset(const char *st){
-    // TODO
+    for(int i=0; i < diyl_len(string_pool); i++){
+        if(strcmp(st, string_pool[i]) == 0){ return i; }
+    }
+    diyl_add(string_pool);
+    int n = diyl_len(string_pool) - 1;
+    string_pool[n] = strdup(st);
+    return n;
 }
 
 // ***
