@@ -129,6 +129,8 @@ int interpret(Tree *tree){
         return tree->value;
     case NodeASSIGN:
         return global_values[tree->left->value] = interpret(tree->right);
+    case NodeADD:
+        return interpret(tree->left) + interpret(tree->right);
     }
 }
 
