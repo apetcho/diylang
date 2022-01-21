@@ -131,6 +131,8 @@ int interpret(Tree *tree){
         return global_values[tree->left->value] = interpret(tree->right);
     case NodeADD:
         return interpret(tree->left) + interpret(tree->right);
+    case NodeSUB:
+        return interpret(tree->left) - interpret(tree->right);
     }
 }
 
