@@ -238,8 +238,31 @@ char* rtrim(char *text, int *len){
 }
 
 // ***
-int fetch_string_offset(char *s){
-    // TODO
+int fetch_string_offset(char *st){
+    int len = strlen(st);
+    st[len-1] = '\0';
+    ++st;
+    char *p, *q;
+    p = q = st;
+    //
+    while((*p++ = *q++) != '\0'){
+        if(q[-1] == '\\'){
+            if(q[0]=='n'){
+                p[-1] = '\n';
+                ++q;
+            }else{
+                ++q;
+            }
+        }
+    }
+
+    for(int i=0; i < diyl_len(stringpool); ++i){
+        if(strcmp(st, stringpool[i]) == 0){ return i; }
+    }
+    diyl_add(stringpool);
+    int n = diyl_len(stringpool) - 1;
+    stringpool[n] = strdup(st);
+    return diyl_len(stringpool);
 }
 
 // ***
