@@ -173,6 +173,10 @@ int interpret(Tree *tree){
     case NodePRTS:
         printf("%s", stringpool[interpret(tree->left)]);
         return 0;
+    case NodeSEQ:
+        interpret(tree->left);
+        interpret(tree->right);
+        return 0;
     }
 }
 
