@@ -128,7 +128,10 @@ Tree *make_node(NodeEnum_t ntype, Tree *left, Tree *right){
 
 // ***
 Tree *make_leaf(NodeEnum_t ntype, char *value){
-    // TODO
+    Tree *tree = calloc(sizeof(*tree), 1);
+    tree->node = ntype;
+    tree->value = value;
+    return tree;
 }
 
 // ***
