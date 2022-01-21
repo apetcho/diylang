@@ -114,7 +114,7 @@ void error(const char *fmt, ...){
 
 // ***
 CodeEnum_t type_to_opcode(NodeEnum_t type){
-    // TODO
+    return attr[type].opcode;
 }
 
 // ***
