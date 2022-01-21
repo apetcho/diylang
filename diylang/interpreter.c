@@ -119,7 +119,11 @@ Tree* make_leaf(NodeEnum_t ntype, int value){
 
 // ***
 int interpret(Tree *tree){
-    // TODO
+    if(!tree){return 0;}
+    switch(tree->node){
+    case NodeINT:
+        return tree->value;
+    }
 }
 
 
