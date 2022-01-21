@@ -125,6 +125,8 @@ int interpret(Tree *tree){
         return tree->value;
     case NodeIDENT:
         return global_values[tree->value];
+    case NodeSTR:
+        return tree->value;
     }
 }
 
