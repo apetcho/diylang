@@ -232,7 +232,9 @@ char* read_line(int *len){
 
 // ***
 char* rtrim(char *text, int *len){
-    // TODO
+    for(; *len > 0 && isspace(text[*len-1]); --(*len)){}
+    text[*len] = '\0';
+    return text;
 }
 
 // ***
