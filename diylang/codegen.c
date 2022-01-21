@@ -153,7 +153,9 @@ void emit_int(int32_t n){
 
 // ***
 int hole(){
-    // TODO
+    int t = here;
+    emit_int(0);
+    return t;
 }
 
 // ***
