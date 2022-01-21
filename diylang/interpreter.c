@@ -155,8 +155,8 @@ int interpret(Tree *tree){
         return interpret(tree->left) || interpret(tree->right);
     case NodeNEG:
         return -interpret(tree->left);
-    //case NodeNOT:
-    //    return !interpret(tree->left);
+    case NodeNOT:
+        return !interpret(tree->left);
     }
 }
 
