@@ -160,6 +160,10 @@ int interpret(Tree *tree){
     case NodeIF:
         if(interpret(tree->left)){interpret(tree->right->left);}
         else{interpret(tree->right->right); }
+        return 0;
+    case NodeWHILE:
+        while(interpret(tree->left)){interpret(tree->right);}
+        return 0;
     }
 }
 
