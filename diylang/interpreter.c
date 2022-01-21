@@ -48,7 +48,7 @@ struct Tree {
     NodeEnum_t node;
     struct Tree *left;
     struct Tree *right;
-    char *value;
+    int value;
 };
 
 // ***
@@ -111,7 +111,10 @@ Tree* make_node(NodeEnum_t ntype, Tree* left, Tree* right){
 
 // ***
 Tree* make_leaf(NodeEnum_t ntype, int value){
-    // TODO
+    Tree *tree = calloc(sizeof(*tree), 1);
+    tree->node = ntype;
+    tree->value = value;
+    return tree;
 }
 
 // ***
