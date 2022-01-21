@@ -267,7 +267,14 @@ int fetch_string_offset(char *st){
 
 // ***
 int fetch_var_offset(const char *name){
-    // TODO
+    for(int i=0; i < diyl_len(global_names); ++i){
+        if(strcmp(name, global_names[i]) == 0){ return i; }
+    }
+    diyl_add(global_names);
+    int n = diyl_len(global_names) - 1;
+    global_names[n] = strdup(name);
+    diyl_append(global_values, 0);
+    return n;
 }
 
 // ***
