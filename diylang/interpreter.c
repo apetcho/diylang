@@ -146,7 +146,9 @@ int interpret(Tree *tree){
     case NodeLE:
         return interpret(tree->left) <= interpret(tree->right);
     case NodeEQ:
-        return interpret(tree->left) == interpret(tree->right); 
+        return interpret(tree->left) == interpret(tree->right);
+    case NodeNE:
+        return interpret(tree->left) != interpret(tree->right); 
     }
 }
 
