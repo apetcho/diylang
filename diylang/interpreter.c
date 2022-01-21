@@ -164,6 +164,9 @@ int interpret(Tree *tree){
     case NodeWHILE:
         while(interpret(tree->left)){interpret(tree->right);}
         return 0;
+    case NodePRTC:
+        printf("%c", tree->left);
+        return 0;
     }
 }
 
