@@ -160,7 +160,7 @@ int hole(){
 
 // ***
 void fix(int src, int dst){
-    // TODO
+    *(int32_t*)(object + src) = dst - src;
 }
 
 // ***
