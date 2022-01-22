@@ -123,6 +123,10 @@ again:
         sp[-2] /= sp[-1];
         --sp;
         goto again;
+    case LT:
+        sp[-2] = sp[-2] < sp[-1];
+        --sp;
+        goto again;
     }// switch
 }
 
