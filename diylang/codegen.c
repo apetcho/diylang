@@ -315,6 +315,9 @@ again:
     case DIV:
         fprintf(dstfile, "div\n");
         goto again;
+    case MOD:
+        fprintf(dstfile, "mod\n");
+        goto again;
     }//switch
 }
 
