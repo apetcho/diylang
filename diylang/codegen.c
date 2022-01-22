@@ -333,6 +333,9 @@ again:
     case EQ:
         fprintf(dstfile, "eq\n");
         goto again;
+    case AND:
+        fprintf(dstfile, "and\n");
+        goto again;
     }//switch
 }
 
