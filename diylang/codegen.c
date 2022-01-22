@@ -303,6 +303,9 @@ again:
         fprintf(dstfile, "push %d\n", *(int32_t*)pc);
         pc += sizeof(int32_t);
         goto again;
+    case ADD:
+        fprintf(dstfile, "add");
+        goto again;
     }//switch
 }
 
