@@ -241,6 +241,10 @@ void code_gen(Tree *tree){
         code_gen(tree->left);
         code_gen(tree->right);
         break;
+    case NodePRTC:
+        code_gen(tree->left);
+        emit_byte(PRTC);
+        break;
     }
 }
 
