@@ -201,6 +201,11 @@ void code_gen(Tree *tree){
         emit_byte(PUSH);
         emit_int(atoi(tree->value));
         break;
+    case NodeSTR:
+        emit_byte((PUSH));
+        n = fetch_string_offset(tree->value);
+        emit_int(n);
+        break;
     }
 }
 
