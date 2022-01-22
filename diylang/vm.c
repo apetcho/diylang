@@ -181,6 +181,8 @@ again:
         goto again;
     case HALT:
         break;
+    default:
+        error("Unknown opcode %d\n", *(pc-1));
     }// switch
 }
 
