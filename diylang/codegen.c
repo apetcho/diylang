@@ -345,6 +345,9 @@ again:
     case NEG:
         fprintf(dstfile, "neg\n");
         goto again;
+    case JMP:
+        fprintf(dstfile, "jmp\n");
+        goto again;
     }//switch
 }
 
