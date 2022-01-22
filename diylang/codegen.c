@@ -253,6 +253,13 @@ void code_gen(Tree *tree){
         code_gen(tree->left);
         emit_byte(PRTS);
         break;
+    case NodeLT: case NodeGT: case NodeLE: case NodeEQ: case NodeNE:
+    case NodeAND: case NodeOR: case NodeSUB: case NodeADD: case NodeDIV:
+    case NodeMUL: case NodeMOD:
+        code_gen(tree->left);
+        code_gen(tree->right);
+        emit_byte(type_to_opcode(tree->node));
+        break;
     }
 }
 
