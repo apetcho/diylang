@@ -260,6 +260,13 @@ void code_gen(Tree *tree){
         code_gen(tree->right);
         emit_byte(type_to_opcode(tree->node));
         break;
+    case NodeNEG: case NodeNOT:
+        code_gen(tree->left);
+        emit_byte(type_to_opcode(tree->node));
+        break;
+    default:
+        error("Error in code generator - found %d, expecting operator",
+            tree->node);
     }
 }
 
