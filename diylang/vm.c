@@ -164,6 +164,9 @@ again:
     case JMP:
         pc += *(int32_t*)pc;
         goto again;
+    case JZ:
+        pc += (*--sp == 0) ? *(int32_t*)pc : (int32_t)(sizeof(int32_t));
+        goto again;
     }// switch
 }
 
