@@ -158,6 +158,9 @@ again:
     case NEG:
         sp[-1] = -sp[-1];
         goto again;
+    case NOT:
+        sp[-1] = !sp[-1];
+        goto again;
     }// switch
 }
 
