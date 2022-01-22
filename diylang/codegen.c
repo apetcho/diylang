@@ -339,6 +339,9 @@ again:
     case OR:
         fprintf(dstfile, "or\n");
         goto again;
+    case NOT:
+        fprintf(dstfile, "not\n");
+        goto again;
     }//switch
 }
 
