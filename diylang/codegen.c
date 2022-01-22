@@ -366,6 +366,11 @@ again:
     case PRTS:
         fprintf(dstfile, "prts\n");
         goto again;
+    case HALT:
+        fprintf(dstfile, "halt\n");
+        break;
+    default:
+        error("listcode: Unknow opcode %d\n", *(pc - 1));
     }//switch
 }
 
