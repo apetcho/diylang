@@ -237,6 +237,10 @@ void code_gen(Tree *tree){
         fix(hole(), p1);
         fix(p2, here);
         break;
+    case NodeSEQ:
+        code_gen(tree->left);
+        code_gen(tree->right);
+        break;
     }
 }
 
