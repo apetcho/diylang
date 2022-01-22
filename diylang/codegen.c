@@ -342,6 +342,9 @@ again:
     case NOT:
         fprintf(dstfile, "not\n");
         goto again;
+    case NEG:
+        fprintf(dstfile, "neg\n");
+        goto again;
     }//switch
 }
 
