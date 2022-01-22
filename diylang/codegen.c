@@ -212,6 +212,21 @@ void code_gen(Tree *tree){
         emit_byte(STORE);
         emit_int(n);
         break;
+    case NodeIF:
+        code_gen(tree->left);
+        emit_byte(JZ);
+        p1 = hole();
+        code_gen(tree->right->left);
+        if(tree->right->right != NULL){
+            emit_byte(JMP);
+            p2 = hole();
+        }
+        fix(p1, here);
+        if(tree->right->right != NULL){
+            code_gen(tree->right->right);
+            fix(p2, here);
+        }
+        break;
     }
 }
 
