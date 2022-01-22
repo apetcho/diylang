@@ -103,6 +103,10 @@ again:
         data[*(int32_t*)pc] = *--sp;
         pc += sizeof(int32_t);
         goto again;
+    case PUSH:
+        *sp++ = *(int32_t*)pc;
+        pc += sizeof(int32_t);
+        goto again;
     }// switch
 }
 
