@@ -357,6 +357,9 @@ again:
         );
         pc += sizeof(int32_t);
         goto again;
+    case PRTC:
+        fprintf(dstfile, "prtc\n");
+        goto again;
     }//switch
 }
 
