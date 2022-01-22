@@ -90,7 +90,16 @@ void error(const char *fmt, ...){
 // ******* Virtual Machine Interpreter *******
 // -------------------------------------------
 void run_vm(const Code_t obj[], int32_t data[], int g_size, char **stringpool){
-    // TODO
+    int32_t *sp = &data[g_size+1];
+    const Code_t *pc = obj;
+
+again:
+    switch(*pc++){
+    case FETCH:
+        *sp++ = data[*(int32_t*)pc];
+        pc += sizeof(int32_t);
+        goto again;
+    }// switch
 }
 
 // ***
