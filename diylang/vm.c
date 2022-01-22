@@ -175,6 +175,10 @@ again:
         printf("%s", stringpool[sp[-1]]);
         --sp;
         goto again;
+    case PRTI:
+        printf("%d", sp[-1]);
+        --sp;
+        goto again;
     }// switch
 }
 
