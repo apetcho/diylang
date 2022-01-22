@@ -188,7 +188,23 @@ again:
 
 // ***
 char* read_line(int *len){
-    // TODO
+    static char *text = NULL;
+    static int textmax = 0;
+
+    for(*len=0; ; (*len)++){
+        int ch = fgetc(srcfile);
+        if(ch==EOF || ch == '\n'){
+            if(*len == 0){ return NULL; }
+            break;
+        }
+        if((*len) + 1 >= textmax){
+            textmax = (textmax == 0) ? 128 : textmax * 2;
+            text = realloc(text, textmax);
+        }
+        text[(*len)] = ch;
+    }
+    text[(*len)] = '\0';
+    return text;
 }
 
 
