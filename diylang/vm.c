@@ -111,6 +111,10 @@ again:
         sp[-2] += sp[-1];
         --sp;
         goto again;
+    case SUB:
+        sp[-2] -= sp[-1];
+        --sp;
+        goto again;
     }// switch
 }
 
