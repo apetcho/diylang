@@ -99,6 +99,10 @@ again:
         *sp++ = data[*(int32_t*)pc];
         pc += sizeof(int32_t);
         goto again;
+    case STORE:
+        data[*(int32_t*)pc] = *--sp;
+        pc += sizeof(int32_t);
+        goto again;
     }// switch
 }
 
