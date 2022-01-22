@@ -314,6 +314,12 @@ char** load_code(int *ds){
         case PUSH:
             emit_int(atoi(operand));
             break;
+        case FETCH: case STORE:
+            operand++;
+            len = strlen(operand);
+            operand[len-1] = '\0';
+            emit_int(atoi(operand));
+            break;
         }// switch
     }
 }
