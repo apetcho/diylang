@@ -179,6 +179,8 @@ again:
         printf("%d", sp[-1]);
         --sp;
         goto again;
+    case HALT:
+        break;
     }// switch
 }
 
