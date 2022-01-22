@@ -322,6 +322,8 @@ char** load_code(int *ds){
             break;
         }// switch
     }
+
+    return stringpool;
 }
 
 // ***
