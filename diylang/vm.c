@@ -252,7 +252,14 @@ void emit_byte(int c){
 
 // ***
 void emit_int(int32_t n){
-    // TODO
+    union {
+        int32_t n;
+        unsigned char c[sizeof(int32_t)];
+    } x;
+    x.n = n;
+    for(size_t i=0; i < sizeof(x.n); ++i){
+        emit_byte(x.c[i]);
+    }
 }
 
 // ***
