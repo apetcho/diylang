@@ -277,7 +277,25 @@ void code_finish(){
 
 // ***
 void list_code(){
-    // TODO
+    fprintf(
+        dstfile,
+        "Datasize: %d strings: %d\n",
+        diyl_len(globals), diyl_len(string_pool)
+    );
+    for(int i=0; i < diyl_len(string_pool); ++i){
+        fprintf(dstfile, "%s\n", string_pool[i]);
+    }
+
+    Code_t *pc = object;
+    // --
+    again:
+        fprintf(dstfile, "%5d ", (int)(pc - object));
+        switch(*pc++){
+        case FETCH:
+            fprintf(dstfile, "fetch [%d]\n", *(int32_t*)pc);
+            pc += sizeof(int32_t);
+            goto again;
+        }//
 }
 
 // ***
