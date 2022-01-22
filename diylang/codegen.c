@@ -206,6 +206,12 @@ void code_gen(Tree *tree){
         n = fetch_string_offset(tree->value);
         emit_int(n);
         break;
+    case NodeASSIGN:
+        n = fetch_var_offset(tree->left->value);
+        code_gen(tree->right);
+        emit_byte(STORE);
+        emit_int(n);
+        break;
     }
 }
 
