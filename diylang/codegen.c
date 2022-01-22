@@ -360,6 +360,9 @@ again:
     case PRTC:
         fprintf(dstfile, "prtc\n");
         goto again;
+    case PRTI:
+        fprintf(dstfile, "prti\n");
+        goto again;
     }//switch
 }
 
