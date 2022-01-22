@@ -155,6 +155,9 @@ again:
         sp[-2] = sp[-2] || sp[-1];
         --sp;
         goto again;
+    case NEG:
+        sp[-1] = -sp[-1];
+        goto again;
     }// switch
 }
 
