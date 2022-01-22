@@ -311,6 +311,9 @@ char** load_code(int *ds){
             operand[len-1] = '\0';
             emit_int(atoi(operand));
             break;
+        case PUSH:
+            emit_int(atoi(operand));
+            break;
         }// switch
     }
 }
