@@ -312,6 +312,9 @@ again:
     case MUL:
         fprintf(dstfile, "mul\n");
         goto again;
+    case DIV:
+        fprintf(dstfile, "div\n");
+        goto again;
     }//switch
 }
 
