@@ -197,6 +197,10 @@ void code_gen(Tree *tree){
         n = fetch_var_offset(tree->value);
         emit_int(n);
         break;
+    case NodeINT:
+        emit_byte(PUSH);
+        emit_int(atoi(tree->value));
+        break;
     }
 }
 
