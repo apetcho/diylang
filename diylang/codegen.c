@@ -346,7 +346,16 @@ again:
         fprintf(dstfile, "neg\n");
         goto again;
     case JMP:
-        fprintf(dstfile, "jmp\n");
+        fprintf(dstfile, "jmp (%d) %d\n",
+            *(int32_t*)pc, (int32_t)(pc + (*(int32_t*)pc) - object)
+        );
+        pc += sizeof(int32_t);
+        goto again;
+    case JZ:
+        fprintf(dstfile, "jz (%d) %d\n",
+            *(int32_t*)pc, (int32_t)(pc + (*(int32_t*)pc) - object)
+        );
+        pc += sizeof(int32_t);
         goto again;
     }//switch
 }
