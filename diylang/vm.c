@@ -247,7 +247,7 @@ int findit(const char text[], int offset){
 
 // ***
 void emit_byte(int c){
-    // TODO
+    diyl_append(object, (uchar)c);
 }
 
 // ***
