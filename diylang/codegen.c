@@ -299,6 +299,10 @@ again:
         fprintf(dstfile, "store [%d]\n", *(int32_t*)pc);
         pc += sizeof(int32_t);
         goto again;
+    case PUSH:
+        fprintf(dstfile, "push %d\n", *(int32_t*)pc);
+        pc += sizeof(int32_t);
+        goto again;
     }//switch
 }
 
