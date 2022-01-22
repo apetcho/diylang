@@ -330,6 +330,9 @@ again:
     case GE:
         fprintf(dstfile, "ge\n");
         goto again;
+    case EQ:
+        fprintf(dstfile, "eq\n");
+        goto again;
     }//switch
 }
 
