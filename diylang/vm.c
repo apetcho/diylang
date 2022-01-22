@@ -236,7 +236,13 @@ char* translate(char *st){
 
 // ***
 int findit(const char text[], int offset){
-    //
+    for(size_t i=0; i < sizeof(codemap)/sizeof(codemap[0]); i++){
+        if(strcmp(codemap[i].text, text)==0){
+            return codemap[i].opcode;
+        }
+    }
+    error("Unknown instruction %s at %d\n", text, offset);
+    return -1;
 }
 
 // ***
