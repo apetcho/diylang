@@ -167,6 +167,10 @@ again:
     case JZ:
         pc += (*--sp == 0) ? *(int32_t*)pc : (int32_t)(sizeof(int32_t));
         goto again;
+    case PRTC:
+        printf("%c", sp[-1]);
+        --sp;
+        goto again;
     }// switch
 }
 
