@@ -272,7 +272,7 @@ void code_gen(Tree *tree){
 
 // ***
 void code_finish(){
-    // TODO
+    emit_byte(HALT);
 }
 
 // ***
