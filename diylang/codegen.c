@@ -425,7 +425,24 @@ char *rtrim(char *text, int *len){
 
 // ***
 Tree* load_ast(){
-    // TODO
+    int len;
+    char **yytext = read_line(&len);
+
+    // --
+    char *token = strtok(yytext, " ");
+    if(token[0] = ';'){ return NULL; }
+    NodeEnum_t node = get_enum_value(token);
+    // --
+    char *p = token + strlen(token);
+    if(p != &yytext[len]){
+        for(++p; isspace(*p); ++p){}
+        return make_leaf(node, p);
+    }
+
+    //
+    Tree *left = load_ast();
+    Tree *right = load_ast();
+    return make_node(node, left, right);
 }
 
 
