@@ -385,7 +385,14 @@ void initialize(FILE **fp, FILE *std, const char mode[], const char filename[]){
 
 // ***
 NodeEnum_t get_enum_value(const char name[]){
-    // TODO
+    for(size_t i=0; i < sizeof(attr)/sizeof(attr[0]); i++){
+        if(strcmp(attr[i].enumtxt, name) == 0){
+            return attr[i].node;
+        }
+    }
+
+    error("Unknown token %s\n", name);
+    return -1;
 }
 
 // ***
