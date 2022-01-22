@@ -309,6 +309,9 @@ again:
     case SUB:
         fprintf(dstfile, "sub\n");
         goto again;
+    case MUL:
+        fprintf(dstfile, "mul\n");
+        goto again;
     }//switch
 }
 
