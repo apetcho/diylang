@@ -33,8 +33,8 @@ typedef uchar Code_t;
 
 // ---
 typedef enum{
-    FETCH, STORE, PUSH, ADD, SUB, MUL, DIV, MOD, LT, GT, LE, GE, EQ, NE,
-    AND, OR, NEG, NOT, JMP, JZ, PRTC, PRTS, PRTI, HALT
+    FETCH, STORE, PUSH, ADD, SUB, MUL, DIV, MOD, LT, GT, LE, GE,
+    EQ, NE, AND, OR, NEG, NOT, JMP, JZ, PRTC, PRTS, PRTI, HALT
 }CodeEnum_t;
 
 // ---
@@ -76,7 +76,14 @@ diyl_dim(object, Code_t);
 
 // ***
 void error(const char *fmt, ...){
-    // TODO
+    va_list ap;
+    char buf[1000];
+
+    va_start(ap, fmt);
+    vsprintf(buf, fmt, ap);
+    va_end(ap);
+    printf("Error: %s\n", buf);
+    exit(1);
 }
 
 // -------------------------------------------
