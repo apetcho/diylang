@@ -262,9 +262,57 @@ void emit_int(int32_t n){
     }
 }
 
+/*
+Datasize: 5 Strings: 3
+"is prime\n"
+"Total primes found:"
+"\n"
+154 jmp (-73) 82
+164 jz (32) 197
+175 push 0
+159 fetch [4]
+149 store [3]
+*/
 // ***
 char** load_code(int *ds){
-    // TODO
+    int line_len, nstr;
+    char **stringpool;
+    char *text = read_line(&line_len);
+    text = rtrim(text, &line_len);
+
+    strtok(text, " ");              // skip "Datasize:"
+    *ds = atoi(strtok(NULL, " "));  // get actual data_size
+    strtok(NULL, " ");              // skip "Strings:"
+    nstr = atoi(strtok(NULL, " ")); // get number of strings
+
+    stringpool = malloc(nstr * sizeof(char*));
+    for(int i=0; i < nstr; ++i){
+        text = read_line(&line_len);
+        text = rtrim(text, &line_len);
+        text = translate(text);
+        stringpool[i] = strdup(text);
+    }
+
+    for(;;){
+        int len;
+        text = read_line(&line_len);
+        if(text == NULL){ break; }
+        text = rtrim(text, &line_len);
+        int offset = atoi(strtok(text, " "));   // get the offset
+        char *instr = strtok(NULL, " ");        // get the instruction
+        int opcode = findit(instr, offset);
+        emit_byte(opcode);
+        char *operand = strtok(NULL, " ");
+
+        switch(opcode){
+        case JMP: case JZ:
+            operand++;
+            len = strlen(operand);
+            operand[len-1] = '\0';
+            emit_int(atoi(operand));
+            break;
+        }// switch
+    }
 }
 
 // ***
