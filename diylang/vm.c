@@ -107,6 +107,10 @@ again:
         *sp++ = *(int32_t*)pc;
         pc += sizeof(int32_t);
         goto again;
+    case ADD:
+        sp[-2] += sp[-1];
+        --sp;
+        goto again;
     }// switch
 }
 
