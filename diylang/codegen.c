@@ -288,14 +288,18 @@ void list_code(){
 
     Code_t *pc = object;
     // --
-    again:
-        fprintf(dstfile, "%5d ", (int)(pc - object));
-        switch(*pc++){
-        case FETCH:
-            fprintf(dstfile, "fetch [%d]\n", *(int32_t*)pc);
-            pc += sizeof(int32_t);
-            goto again;
-        }//
+again:
+    fprintf(dstfile, "%5d ", (int)(pc - object));
+    switch(*pc++){
+    case FETCH:
+        fprintf(dstfile, "fetch [%d]\n", *(int32_t*)pc);
+        pc += sizeof(int32_t);
+        goto again;
+    case STORE:
+        fprintf(dstfile, "store [%d]\n", *(int32_t*)pc);
+        pc += sizeof(int32_t);
+        goto again;
+    }//switch
 }
 
 // ***
