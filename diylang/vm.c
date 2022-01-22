@@ -161,6 +161,9 @@ again:
     case NOT:
         sp[-1] = !sp[-1];
         goto again;
+    case JMP:
+        pc += *(int32_t*)pc;
+        goto again;
     }// switch
 }
 
