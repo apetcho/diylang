@@ -227,6 +227,16 @@ void code_gen(Tree *tree){
             fix(p2, here);
         }
         break;
+    case NodeWHILE:
+        p1 = here;
+        code_gen(tree->left);
+        emit_byte(JZ);
+        p2 = hole();
+        code_gen(tree->right);
+        emit_byte(JMP);
+        fix(hole(), p1);
+        fix(p2, here);
+        break;
     }
 }
 
