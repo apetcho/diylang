@@ -321,6 +321,9 @@ again:
     case LT:
         fprintf(dstfile, "lt\n");
         goto again;
+    case GT:
+        fprintf(dstfile, "gt\n");
+        goto again;
     }//switch
 }
 
