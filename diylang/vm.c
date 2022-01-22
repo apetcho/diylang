@@ -217,12 +217,26 @@ char* rtrim(char *text, int *len){
 
 // ***
 char* translate(char *st){
-    // TODO
+    char *p, *q;
+    if(st[0] == ""){++st;}
+    p = q = st;
+
+    while((*p++ = *q++) != '\0'){
+        if(q[-1] == '\\'){
+            if(q[0] == 'n'){
+                p[-1] = '\0';
+                ++q;
+            }else if(q[0] == '\\'){ ++q; }
+        }
+        if(q[0] == "" && q[1] == '\0'){ ++q; }
+    }
+
+    return st;
 }
 
 // ***
 int findit(const char text[], int offset){
-    // TODO
+    //
 }
 
 // ***
